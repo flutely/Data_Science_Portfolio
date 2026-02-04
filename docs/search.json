@@ -60,44 +60,37 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About Me",
+    "title": "",
     "section": "",
-    "text": "Write a brief introduction about yourself here. Include:\n\nYour academic background\nYour interest in data science\nYour career goals\nAny relevant experience or projects"
-  },
-  {
-    "objectID": "about.html#background",
-    "href": "about.html#background",
-    "title": "About Me",
-    "section": "",
-    "text": "Write a brief introduction about yourself here. Include:\n\nYour academic background\nYour interest in data science\nYour career goals\nAny relevant experience or projects"
+    "text": "Code"
   },
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
-    "title": "About Me",
+    "title": "",
     "section": "Education",
-    "text": "Education\n\n[Your Degree] - [University Name], [Year]\nRelevant Coursework: Statistics, Data Analysis, Programming, etc."
+    "text": "Education\n\nBrigham Young University\n\nApplied Statistics and Analytics | Expected Graduation: April 2027\n\nDean’s list (top 95% of students) since 2023\nRelevant Courses: Statistical Modeling 1 & 2, Probability and Inference 1 & 2, Calculus of Several Variables, Linear Algebra, Intro to Computer Science"
   },
   {
-    "objectID": "about.html#skills-interests",
-    "href": "about.html#skills-interests",
-    "title": "About Me",
-    "section": "Skills & Interests",
-    "text": "Skills & Interests\n\nTechnical Skills\n\nProgramming: Python\nData Analysis: Pandas, NumPy\nVisualization: Matplotlib, Seaborn\nMachine Learning: Scikit-learn\nTools: Jupyter Notebooks, Git/GitHub\n\n\n\nAreas of Interest\n\n[Your specific interests, e.g., environmental data, healthcare analytics, finance, etc.]\n[Other areas you’re curious about]"
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "",
+    "section": "Experience",
+    "text": "Experience\n\nStudent Business Analyst\n\nBrigham Young University | December 2025 - Present\n\n\n\nData Analyst Intern\n\nChristopherson Business Travel | June 2025 - September 2025\n\nWorked with large datasets (1-10M+ rows) related to call centers, client information, etc.\nCreated profitability model to determine performance based employee compensation\nAdjusted for GDP changes and COVID-19 travel shock in historic data\nRegularly presented data insights and statistical findings & communicated possible roadblocks\n\n\n\n\nMath Instructional Design Assistant\n\nBrigham Young University | January 2023 - November 2025\n\nDesigned 7 High School Math courses serving 60,000+ students in 153 countries\nTrained and mentored 3-5 student employees in web design and learning objective alignment\nUsed task management tools to coordinate tasks and deadlines (Microsoft Teams, Teamwork)\nFocused on accessibility, clarity, and student-centered design in an online format\n\n\n\n\nFull-Time Missionary\n\nThe Church of Jesus Christ of Latter-day Saints | May 2023 - November 2024\nEach item should include a brief description."
   },
   {
-    "objectID": "about.html#goals",
-    "href": "about.html#goals",
-    "title": "About Me",
-    "section": "Goals",
-    "text": "Goals\nDescribe what you hope to achieve through your data science journey:\n\nShort-term learning objectives\nLong-term career aspirations\nTypes of problems you want to solve"
+    "objectID": "about.html#skills",
+    "href": "about.html#skills",
+    "title": "",
+    "section": "Skills",
+    "text": "Skills\n\nTechnical Tools:\n\nPython\nR\nSQL\nTableau\nExcel ### Statistical Methods:\nRegression\nInference\nModeling\nData Visualization ### Soft Skills:\nCritical Thinking & Problem Solving\nCollaboration & Communication\nOrganization & Dependability"
   },
   {
-    "objectID": "about.html#contact",
-    "href": "about.html#contact",
-    "title": "About Me",
-    "section": "Contact",
-    "text": "Contact\n\nEmail: your.email@example.com\nGitHub: github.com/your-username\nLinkedIn: linkedin.com/in/your-profile\n\n\nThis portfolio showcases my learning progress and projects completed during my data science studies."
+    "objectID": "about.html#get-to-know-me",
+    "href": "about.html#get-to-know-me",
+    "title": "",
+    "section": "Get to Know Me",
+    "text": "Get to Know Me\n\nHobbies\n\nPiano, Flute, Singing & Guitar\nRunning & Hiking\nBoard Games ### Fun facts\nMy favorite color is green\n\nImage (required) Include at least one image (for example, a headshot or personal photo).\nUse proper Markdown image syntax\nInclude descriptive alt text"
   },
   {
     "objectID": "projects/data-acquisition.html",

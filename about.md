@@ -63,7 +63,6 @@ Each item should include a brief description.
 Image (required)
 Include at least one image (for example, a headshot or personal photo).
 
-![Headshot of Me!](PXL_20250903_143358865.png "BYU Logo")
 
 Use proper Markdown image syntax
 
