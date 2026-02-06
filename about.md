@@ -69,7 +69,7 @@ I am a Statistics undergraduate with strong technical skills in Python, R, and S
 
 Image (required)
 Include at least one image (for example, a headshot or personal photo).
-![Alt text for the image](https://github.com/flutely/Data_Science_Portfolio/blob/541d251cfdbf1946e2bf914b863bc810a0c5f7ca/PXL_20250903_143358865.jpg)
+![Alt text for the image](https://github.com/flutely/Data_Science_Portfolio/blob/541d251cfdbf1946e2bf914b863bc810a0c5f7ca/PXL_20250903_143358865.jpg?raw=true)
 
 
 
