@@ -2,6 +2,8 @@
 
 I am a Statistics undergraduate with strong technical skills in Python, R, and SQL. I am experienced in regression modeling, data visualization, and dataset integration, with an interest in solving real-world problems through data.
 
+
+
 ## Education
 ### Brigham Young University 
 #### Applied Statistics and Analytics | Expected Graduation: April 2027
@@ -13,6 +15,10 @@ I am a Statistics undergraduate with strong technical skills in Python, R, and S
 
 ### Student Business Analyst
 #### Brigham Young University | December 2025 - Present
+- Wrote queries to safely transport sensitive information related to Enrollment and Financial Aid
+- Designed multiple Tableau dashboards created from custom SQL scripts for clarity and usability
+- Maintained data security, privacy, & upheld FERPA laws for more than 500,000 distinct people
+
 
 ### Data Analyst Intern
 #### Christopherson Business Travel | June 2025 - September 2025
@@ -30,8 +36,7 @@ I am a Statistics undergraduate with strong technical skills in Python, R, and S
 
 ### Full-Time Missionary
 #### The Church of Jesus Christ of Latter-day Saints | May 2023 - November 2024
-
-Each item should include a brief description.
+- Volunteer service in Uruguay
 
 ## Skills
 ### Technical Tools: 
@@ -40,11 +45,13 @@ Each item should include a brief description.
 - SQL
 - Tableau
 - Excel
+
 ### Statistical Methods: 
 - Regression
 - Inference
 - Modeling
 - Data Visualization
+
 ### Soft Skills: 
 - Critical Thinking & Problem Solving
 - Collaboration & Communication
