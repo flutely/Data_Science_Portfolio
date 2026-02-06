@@ -69,6 +69,8 @@ I am a Statistics undergraduate with strong technical skills in Python, R, and S
 
 Image (required)
 Include at least one image (for example, a headshot or personal photo).
+[Link text](PXL_20250903_143358865.jpg)
+![Alt text](Headshot)
 
 
 Use proper Markdown image syntax
