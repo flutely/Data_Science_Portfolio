@@ -16,18 +16,19 @@ We'll use [Adult Income](https://www.kaggle.com/datasets/wenruliu/adult-income-d
 
 Cross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit. 
 
-## \(k\)-fold Cross Validation
+## $k$-fold Cross Validation
 
 There are a few steps to cross-validation
-1) Split the data into \(k\) folds
 
-In this step 
+1) Split the data into $k$ folds
 
-2) Train on \(k-1\) folds
+In this step we divide the data into $k$ sections
+
+2) Train on $k-1$ folds
 
 3) Validate on remaining fold
 
-4) Repeat \(k\) times
+4) Repeat $k$ times
 
 5) Average performance
 
@@ -50,7 +51,7 @@ x = adult_income[['age', 'hours-per-week']].values
 y = adult_income[['income]].values
 ```
 
-Here we're going to use \(k=5\) folds. 
+Here we're going to use $k=5$ folds. 
 ```{python}
 def k_fold_cv(x, y, k=5):
     n = len(x)
@@ -69,3 +70,5 @@ def k_fold_cv(x, y, k=5):
         errors.append(mse)
     return np.mean(errors), np.std(errors)
 ```
+
+## Tradeoff Between Bias and Variance

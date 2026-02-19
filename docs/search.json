@@ -117,15 +117,22 @@
     "objectID": "cross_validation.html#k-fold-cross-validation",
     "href": "cross_validation.html#k-fold-cross-validation",
     "title": "Cross Validation",
-    "section": "(k)-fold Cross Validation",
-    "text": "(k)-fold Cross Validation\nThere are a few steps to cross-validation 1) Split the data into (k) folds\nIn this step\n\nTrain on (k-1) folds\nValidate on remaining fold\nRepeat (k) times\nAverage performance"
+    "section": "\\(k\\)-fold Cross Validation",
+    "text": "\\(k\\)-fold Cross Validation\nThere are a few steps to cross-validation\n\nSplit the data into \\(k\\) folds\n\nIn this step we divide the data into \\(k\\) sections\n\nTrain on \\(k-1\\) folds\nValidate on remaining fold\nRepeat \\(k\\) times\nAverage performance"
   },
   {
     "objectID": "cross_validation.html#coding-cross-validaion-in-python",
     "href": "cross_validation.html#coding-cross-validaion-in-python",
     "title": "Cross Validation",
     "section": "Coding Cross Validaion in Python",
-    "text": "Coding Cross Validaion in Python\nWe’ll start by loading the necessary libraries and the data.\n\n\nCode\nimport numpy as np\nimport pandas as pd\n\nadult_income = read_csv(\"adult.csv\")[['age', 'hours-per-week', 'class']]\n\n\nWe want to predict whether the income is greater than 50k for a given adult.\n\n\nCode\nadult_income['income'] = (adult_income['class'] == '&gt;50k').astype(int)\n\nx = adult_income[['age', 'hours-per-week']].values\ny = adult_income[['income]].values\n\n\nHere we’re going to use (k=5) folds.\n\n\nCode\ndef k_fold_cv(x, y, k=5):\n    n = len(x)\n    indices = np.random.permutation(n)\n    folds = np.array_split(indices, k)\n    errors = []\n    for i in range(k):\n        test_idx = folds[i]\n        train_idx = np.concatenate([folds[j] for j in range(k) if j != i])\n        x_train, y_train = x[train_idx], y[train_idx]\n        x_test, y_test = x[test_idx], y[test_idx]\n        model = LinearRegression()\n        model.fit(x_train, y_train)\n        preds = model.predict(x_test)\n        mse = mean_squared_error(y_test, preds)\n        errors.append(mse)\n    return np.mean(errors), np.std(errors)"
+    "text": "Coding Cross Validaion in Python\nWe’ll start by loading the necessary libraries and the data.\n\n\nCode\nimport numpy as np\nimport pandas as pd\n\nadult_income = pd.read_csv(\"adult.csv\")[['age', 'hours-per-week', 'class']]\n\n\nWe want to predict whether the income is greater than 50k for a given adult.\n\n\nCode\nadult_income['income'] = (adult_income['class'] == '&gt;50k').astype(int)\n\nx = adult_income[['age', 'hours-per-week']].values\ny = adult_income[['income]].values\n\n\nHere we’re going to use \\(k=5\\) folds.\n\n\nCode\ndef k_fold_cv(x, y, k=5):\n    n = len(x)\n    indices = np.random.permutation(n)\n    folds = np.array_split(indices, k)\n    errors = []\n    for i in range(k):\n        test_idx = folds[i]\n        train_idx = np.concatenate([folds[j] for j in range(k) if j != i])\n        x_train, y_train = x[train_idx], y[train_idx]\n        x_test, y_test = x[test_idx], y[test_idx]\n        model = LinearRegression()\n        model.fit(x_train, y_train)\n        preds = model.predict(x_test)\n        mse = mean_squared_error(y_test, preds)\n        errors.append(mse)\n    return np.mean(errors), np.std(errors)"
+  },
+  {
+    "objectID": "cross_validation.html#tradeoff-between-bias-and-variance",
+    "href": "cross_validation.html#tradeoff-between-bias-and-variance",
+    "title": "Cross Validation",
+    "section": "Tradeoff Between Bias and Variance",
+    "text": "Tradeoff Between Bias and Variance"
   },
   {
     "objectID": "projects/data-acquisition.html",
