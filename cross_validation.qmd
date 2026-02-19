@@ -1,0 +1,45 @@
+# Cross Validation
+
+Have you ever wondered how well your statistical model is doing to model the data? One way to show model accuracy is using a method called cross validation.
+
+## Overview
+
+This page will cover the folowing:
+- What is Cross Validation?
+- \(k\)-fold Cross Validation
+- Coding Cross Validation in Python
+- Tradeoff between Bias and Variance
+
+We'll use [Adult Income](https://www.kaggle.com/datasets/wenruliu/adult-income-dataset?resource=download) data as an example.
+
+## What is Cross Validation?
+
+Cross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit. 
+
+## \(k\)-fold Cross Validation
+
+There are a few steps to cross-validation
+1) Split the data into \(k\) folds
+
+In this step 
+
+2) Train on \(k-1\) folds
+
+3) Validate on remaining fold
+
+4) Repeat \(k\) times
+
+5) Average performance
+
+## Coding Cross Validaion in Python
+
+We'll start by loading the necessary libraries.
+
+```{python}
+import numpy as np
+import pandas as pd
+```
+
+1) Split the data into \(k\) folds.
+
+Here we're going to use k=

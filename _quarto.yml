@@ -16,7 +16,7 @@ website:
       - text: "Blog"
         menu: 
           - text: "Cross-Validation"
-          - href: cross_validation.md
+            href: cross_validation.qmd
       - text: "Projects"
         menu:
           - text: "All Projects"

@@ -95,9 +95,37 @@
   {
     "objectID": "cross_validation.html",
     "href": "cross_validation.html",
-    "title": "",
+    "title": "Cross Validation",
     "section": "",
-    "text": "Code"
+    "text": "Have you ever wondered how well your statistical model is doing to model the data? One way to show model accuracy is using a method called cross validation."
+  },
+  {
+    "objectID": "cross_validation.html#overview",
+    "href": "cross_validation.html#overview",
+    "title": "Cross Validation",
+    "section": "Overview",
+    "text": "Overview\nThis page will cover the folowing: - What is Cross Validation? - (k)-fold Cross Validation - Coding Cross Validation in Python - Tradeoff between Bias and Variance\nWe’ll use Adult Income data as an example."
+  },
+  {
+    "objectID": "cross_validation.html#what-is-cross-validation",
+    "href": "cross_validation.html#what-is-cross-validation",
+    "title": "Cross Validation",
+    "section": "What is Cross Validation?",
+    "text": "What is Cross Validation?\nCross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit."
+  },
+  {
+    "objectID": "cross_validation.html#k-fold-cross-validation",
+    "href": "cross_validation.html#k-fold-cross-validation",
+    "title": "Cross Validation",
+    "section": "(k)-fold Cross Validation",
+    "text": "(k)-fold Cross Validation\nThere are a few steps to cross-validation 1) Split the data into (k) folds\nIn this step\n\nTrain on (k-1) folds\nValidate on remaining fold\nRepeat (k) times\nAverage performance"
+  },
+  {
+    "objectID": "cross_validation.html#coding-cross-validaion-in-python",
+    "href": "cross_validation.html#coding-cross-validaion-in-python",
+    "title": "Cross Validation",
+    "section": "Coding Cross Validaion in Python",
+    "text": "Coding Cross Validaion in Python\nWe’ll start by loading the necessary libraries.\n\n\nCode\nimport numpy as np\nimport pandas as pd\n\n\n\nSplit the data into (k) folds.\n\nHere we’re going to use k="
   },
   {
     "objectID": "projects/data-acquisition.html",
