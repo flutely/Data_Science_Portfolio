@@ -33,13 +33,15 @@ In this step
 
 ## Coding Cross Validaion in Python
 
-We'll start by loading the necessary libraries.
+We'll start by loading the necessary libraries and the data.
 
 ```{python}
 import numpy as np
 import pandas as pd
+
+adult_income = read_csv("adult.csv")
 ```
 
 1) Split the data into \(k\) folds.
 
-Here we're going to use k=
+Here we're going to use \(k=5\) folds. 
