@@ -13,6 +13,10 @@ website:
         href: index.md
       - text: "About Me"
         href: about.md
+      - text: "Blog"
+        menu: 
+          - text: "Cross-Validation"
+          - href: cross_validation.md
       - text: "Projects"
         menu:
           - text: "All Projects"
