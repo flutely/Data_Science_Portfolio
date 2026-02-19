@@ -6,7 +6,7 @@ Have you ever wondered how well your statistical model is doing to model the dat
 
 This page will cover the folowing:
 - What is Cross Validation?
-- \(k\)-fold Cross Validation
+- $k$-fold Cross Validation
 - Coding Cross Validation in Python
 - Tradeoff between Bias and Variance
 
@@ -22,20 +22,27 @@ There are a few steps to cross-validation
 
 1) Split the data into $k$ folds
 
-In this step we divide the data into $k$ sections
+In this step we divide the data into $k$ sections. We will use different combinations of these sections to train our model and validate it.
 
 2) Train on $k-1$ folds
 
+We will use all but one of our sections to train the data. We will create a model using it.
+
 3) Validate on remaining fold
+
+Next, we take the model created in the previous step and make predictions based on the last section (the one we didn't include to train the model) and then compare the values.
 
 4) Repeat $k$ times
 
+We repeat this process $k$ times to get all possible combinations of the sections for training and validating. 
+
 5) Average performance
+
+Here we take measures of performance from each of the repetitions and aggregate them to evaluate overall how well our model performed.
 
 ## Coding Cross Validaion in Python
 
 We'll start by loading the necessary libraries and the data.
-
 ```{python}
 import numpy as np
 import pandas as pd
@@ -47,28 +54,36 @@ We want to predict whether the income is greater than 50k for a given adult.
 ```{python}
 adult_income['income'] = (adult_income['class'] == '>50k').astype(int)
 
-x = adult_income[['age', 'hours-per-week']].values
-y = adult_income[['income]].values
+x = adult_income[['age', 'hours-per-week']].values # Independent Variables
+y = adult_income[['income]].values # Dependent Variables
 ```
 
-Here we're going to use $k=5$ folds. 
+The following is a function to run the cross-validation process and return the results. 
 ```{python}
-def k_fold_cv(x, y, k=5):
-    n = len(x)
-    indices = np.random.permutation(n)
-    folds = np.array_split(indices, k)
+def k_fold_cv(x, y, k):
+    n = len(x) 
+    indices = np.random.permutation(n) # Reorganize the data randomly to ensure randomization in our splits
+    folds = np.array_split(indices, k) # Create the folds
     errors = []
-    for i in range(k):
+    for i in range(k): # Repeat the process k times
         test_idx = folds[i]
-        train_idx = np.concatenate([folds[j] for j in range(k) if j != i])
+        train_idx = np.concatenate([folds[j] for j in range(k) if j != i]) # Combine training folds into one group
         x_train, y_train = x[train_idx], y[train_idx]
         x_test, y_test = x[test_idx], y[test_idx]
-        model = LinearRegression()
-        model.fit(x_train, y_train)
-        preds = model.predict(x_test)
-        mse = mean_squared_error(y_test, preds)
+        model = LinearRegression() # We use a linear regression in this example
+        model.fit(x_train, y_train) # Fit the model using training data
+        preds = model.predict(x_test) # Predict values for the test data using the model
+        mse = mean_squared_error(y_test, preds) # Use mse to evaluate the difference in predictions and acutal results
         errors.append(mse)
-    return np.mean(errors), np.std(errors)
+    return np.mean(errors), np.std(errors) # return information about the errors
+```
+
+For this dataset we'll use $k=5$ folds. 
+```{python}
+mean_mse, std_mse = k_fold_cv(x, y, k = 5)
+
+print('Mean MSE:', mean_mse)
+print('Std Dev:', std_mse)
 ```
 
 ## Tradeoff Between Bias and Variance
