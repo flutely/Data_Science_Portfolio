@@ -39,9 +39,33 @@ We'll start by loading the necessary libraries and the data.
 import numpy as np
 import pandas as pd
 
-adult_income = read_csv("adult.csv")
+adult_income = pd.read_csv("adult.csv")[['age', 'hours-per-week', 'class']]
 ```
 
-1) Split the data into \(k\) folds.
+We want to predict whether the income is greater than 50k for a given adult. 
+```{python}
+adult_income['income'] = (adult_income['class'] == '>50k').astype(int)
+
+x = adult_income[['age', 'hours-per-week']].values
+y = adult_income[['income]].values
+```
 
 Here we're going to use \(k=5\) folds. 
+```{python}
+def k_fold_cv(x, y, k=5):
+    n = len(x)
+    indices = np.random.permutation(n)
+    folds = np.array_split(indices, k)
+    errors = []
+    for i in range(k):
+        test_idx = folds[i]
+        train_idx = np.concatenate([folds[j] for j in range(k) if j != i])
+        x_train, y_train = x[train_idx], y[train_idx]
+        x_test, y_test = x[test_idx], y[test_idx]
+        model = LinearRegression()
+        model.fit(x_train, y_train)
+        preds = model.predict(x_test)
+        mse = mean_squared_error(y_test, preds)
+        errors.append(mse)
+    return np.mean(errors), np.std(errors)
+```
