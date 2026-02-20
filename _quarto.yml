@@ -44,7 +44,7 @@ website:
 
 format:
   html:
-    # theme: cosmo
+    theme: cosmo
     toc: true
     code-fold: true
     code-tools: true
