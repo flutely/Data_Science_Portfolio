@@ -42,7 +42,7 @@ Here we take our error metric from each of the repetitions and aggregate them to
 
 ## Coding Cross Validation in Python
 
-This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, [Geeks for Geeks] (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process. 
+This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, [Geeks for Geeks](https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process. 
 
 We'll start by loading the necessary libraries and the data.
 ```{python}
@@ -91,7 +91,7 @@ print('Mean MSE:', mean_mse)
 print('Std Dev:', std_mse)
 ```
 
-Here we get an MSE of __ and a standard deviation of __
+Here we get an MSE of $0.164$ and a standard deviation of $0.0024$
 
 ## Advantages and Disadvantages
 

@@ -296,9 +296,9 @@ window.Quarto = {
 </section>
 <section id="coding-cross-validation-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="coding-cross-validation-in-python">Coding Cross Validation in Python</h2>
-<p>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, [Geeks for Geeks] (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process.</p>
+<p>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, <a href="https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/">Geeks for Geeks</a> can be a good starting place. Their website also has additional details for the cross-validation process.</p>
 <p>We’ll start by loading the necessary libraries and the data.</p>
-<div id="ab66d633" class="cell" data-execution_count="1">
+<div id="2a454934" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -310,7 +310,7 @@ window.Quarto = {
 </details>
 </div>
 <p>We want to predict whether the income is greater than 50k for a given adult.</p>
-<div id="62008bc4" class="cell" data-execution_count="2">
+<div id="e980df99" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adult_income[<span class="st">'income'</span>] <span class="op">=</span> (adult_income[<span class="st">'income'</span>] <span class="op">==</span> <span class="st">'&gt;50K'</span>).astype(<span class="bu">int</span>)</span>
@@ -320,7 +320,7 @@ window.Quarto = {
 </details>
 </div>
 <p>The following is a function to run the cross-validation process and return the results.</p>
-<div id="9a17dff2" class="cell" data-execution_count="3">
+<div id="dcae3528" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> k_fold_cv(x, y, k):</span>
@@ -343,7 +343,7 @@ window.Quarto = {
 </details>
 </div>
 <p>For this dataset we’ll use <span class="math inline">\(k=5\)</span> folds.</p>
-<div id="da9e9924" class="cell" data-execution_count="4">
+<div id="dc04d2bd" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mean_mse, std_mse <span class="op">=</span> k_fold_cv(x, y, k <span class="op">=</span> <span class="dv">5</span>)</span>
@@ -356,7 +356,7 @@ window.Quarto = {
 Std Dev: 0.002405123012044023</code></pre>
 </div>
 </div>
-<p>Here we get an MSE of __ and a standard deviation of __</p>
+<p>Here we get an MSE of <span class="math inline">\(0.164\)</span> and a standard deviation of <span class="math inline">\(0.0024\)</span></p>
 </section>
 <section id="advantages-and-disadvantages" class="level2">
 <h2 class="anchored" data-anchor-id="advantages-and-disadvantages">Advantages and Disadvantages</h2>
@@ -884,7 +884,7 @@ Std Dev: 0.002405123012044023</code></pre>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coding Cross Validation in Python</span></span>
 <span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, <span class="co">[</span><span class="ot">Geeks for Geeks</span><span class="co">]</span> (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process. </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, <span class="co">[</span><span class="ot">Geeks for Geeks</span><span class="co">](https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/)</span> can be a good starting place. Their website also has additional details for the cross-validation process. </span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>We'll start by loading the necessary libraries and the data.</span>
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
@@ -933,7 +933,7 @@ Std Dev: 0.002405123012044023</code></pre>
 <span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Std Dev:'</span>, std_mse)</span>
 <span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>Here we get an MSE of __ and a standard deviation of __</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>Here we get an MSE of $0.164$ and a standard deviation of $0.0024$</span>
 <span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Advantages and Disadvantages</span></span>
 <span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a></span>
