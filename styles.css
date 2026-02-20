@@ -18,6 +18,8 @@
 
 .navbar-nav .nav-link {
   font-weight: 500;
+  background-color: var(--primary-color) !important;
+  color: white;
 }
 
 /* Homepage customizations */
