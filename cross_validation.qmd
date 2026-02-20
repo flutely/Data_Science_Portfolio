@@ -1,20 +1,20 @@
 # Cross Validation
 
-Have you ever wondered how well your statistical model is doing to model the data? One way to show model accuracy is using a method called cross validation.
+Have you ever wondered how accurately your statistical model is modeling your data? One way to show model accuracy is using a method called cross validation.
 
 ## Overview
 
-This page will cover the folowing:
+This page will cover the following:
 - What is Cross Validation?
 - $k$-fold Cross Validation
 - Coding Cross Validation in Python
-- Tradeoff between Bias and Variance
+- Advantages and Disadvantages
 
 We'll use [Adult Income](https://www.kaggle.com/datasets/wenruliu/adult-income-dataset?resource=download) data as an example.
 
 ## What is Cross Validation?
 
-Cross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit. 
+Cross-validation is the process of repeatedly splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit, and then aggregating the results to evaluate the model.
 
 ## $k$-fold Cross Validation
 
@@ -22,46 +22,51 @@ There are a few steps to cross-validation
 
 1) Split the data into $k$ folds
 
-In this step we divide the data into $k$ sections. We will use different combinations of these sections to train our model and validate it.
+In this step we divide the data into $k$ sections. We will use different combinations of these sections to train our model and validate it. The number you choose for $k$ will depend based on your dataset and the results you wish to explore. 5 or 10 folds is typically considered standard. More folds will be more computationally expensive but reduce bias in the performance estimate. Fewer folds have lower variance, but have a higher bias. It is usually recommended to have more folds for larger datasets. 
 
 2) Train on $k-1$ folds
 
-We will use all but one of our sections to train the data. We will create a model using it.
+We will use all but one of our sections to create a model. Reserving one section of the data allows us to use the majority of the data to create a model, increasing the accuracy of it, while the smaller portion of the data to check how well the model performs.
 
 3) Validate on remaining fold
 
-Next, we take the model created in the previous step and make predictions based on the last section (the one we didn't include to train the model) and then compare the values.
+Next, we take the model created in the previous step and make predictions using the remaining fold. We plug in the predictor values to the model, and then compare the values the model predicts with the actual values observed in the data. We will store an error metric to later evaluate the mean and standard deviation of the predictions to measure how well our model performed.
 
 4) Repeat $k$ times
 
-We repeat this process $k$ times to get all possible combinations of the sections for training and validating. 
+We repeat this process $k$ times to get all possible combinations of the sections for training and validating. Each section will be used once to validate the data, and $k-1$ times to train the model. Repeating the process across all folds allows us to measure how well the modeling procedure performs for our data and accounts for small random variation seen in the data.
 
 5) Average performance
 
-Here we take measures of performance from each of the repetitions and aggregate them to evaluate overall how well our model performed.
+Here we take our error metric from each of the repetitions and aggregate them to evaluate overall how well our model performed. The mean shows us the average difference in our model's predicted values and our observed data. The standard deviation shows how stable the performance of the model is. Smaller numbers signify that the performance of the model is more consistent.
 
-## Coding Cross Validaion in Python
+## Coding Cross Validation in Python
+
+This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, [Geeks for Geeks] (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process. 
 
 We'll start by loading the necessary libraries and the data.
 ```{python}
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
-adult_income = pd.read_csv("adult.csv")[['age', 'hours-per-week', 'class']]
+adult_income = pd.read_csv("adult.csv")[['age', 'hours-per-week', 'income']]
 ```
 
 We want to predict whether the income is greater than 50k for a given adult. 
 ```{python}
-adult_income['income'] = (adult_income['class'] == '>50k').astype(int)
+adult_income['income'] = (adult_income['income'] == '>50K').astype(int)
 
 x = adult_income[['age', 'hours-per-week']].values # Independent Variables
-y = adult_income[['income]].values # Dependent Variables
+y = adult_income[['income']].values # Dependent Variables
 ```
 
 The following is a function to run the cross-validation process and return the results. 
 ```{python}
 def k_fold_cv(x, y, k):
     n = len(x) 
+    np.random.seed(42)
     indices = np.random.permutation(n) # Reorganize the data randomly to ensure randomization in our splits
     folds = np.array_split(indices, k) # Create the folds
     errors = []
@@ -73,7 +78,7 @@ def k_fold_cv(x, y, k):
         model = LinearRegression() # We use a linear regression in this example
         model.fit(x_train, y_train) # Fit the model using training data
         preds = model.predict(x_test) # Predict values for the test data using the model
-        mse = mean_squared_error(y_test, preds) # Use mse to evaluate the difference in predictions and acutal results
+        mse = mean_squared_error(y_test, preds) # Use mse to evaluate the difference in predictions and actual results
         errors.append(mse)
     return np.mean(errors), np.std(errors) # return information about the errors
 ```
@@ -86,4 +91,25 @@ print('Mean MSE:', mean_mse)
 print('Std Dev:', std_mse)
 ```
 
-## Tradeoff Between Bias and Variance
+Here we get an MSE of __ and a standard deviation of __
+
+## Advantages and Disadvantages
+
+We've now discussed how do cross-validation for a model. But when would this be useful, and when might it be better to choose a different validation method?
+
+### Advantages
+
+- Using $k$-fold cross validation is a more reliable method of validation than a single split of the data.
+- When data is limited, it provides an efficient use of it. We get to both validate the model and train the model with all the data, instead of removing some of it. 
+- Cross validation gives us a metric for how reliable our model is. If the model is easily influenced by variations in data, the results from the cross-validation will show that. 
+- It allows us to evaluate two different models and compare them. The MSE and standard deviation of both will give us insights on which would be better to use.
+
+### Disadvantages
+
+- The process of cross-validation is computationally expensive. For large datasets and complex models it can be slow and costly to run. 
+- Cross-validation is not appropriate for all data types. If there is grouped data or time series data it won't perform as well. 
+- The final model will differ from each of the training models. Because we include all the data aggregated together for the final model, the results will be slightly different from each of the models seen in the training phases. 
+
+## Conclusion
+
+Cross-validation is a useful method for evaluating how well a model is performing on a dataset. It is useful for comparing different models and determining the accuracy and reliability of a model. 

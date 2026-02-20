@@ -228,8 +228,13 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#what-is-cross-validation" id="toc-what-is-cross-validation" class="nav-link" data-scroll-target="#what-is-cross-validation">What is Cross Validation?</a></li>
   <li><a href="#k-fold-cross-validation" id="toc-k-fold-cross-validation" class="nav-link" data-scroll-target="#k-fold-cross-validation"><span class="math inline">\(k\)</span>-fold Cross Validation</a></li>
-  <li><a href="#coding-cross-validaion-in-python" id="toc-coding-cross-validaion-in-python" class="nav-link" data-scroll-target="#coding-cross-validaion-in-python">Coding Cross Validaion in Python</a></li>
-  <li><a href="#tradeoff-between-bias-and-variance" id="toc-tradeoff-between-bias-and-variance" class="nav-link" data-scroll-target="#tradeoff-between-bias-and-variance">Tradeoff Between Bias and Variance</a></li>
+  <li><a href="#coding-cross-validation-in-python" id="toc-coding-cross-validation-in-python" class="nav-link" data-scroll-target="#coding-cross-validation-in-python">Coding Cross Validation in Python</a></li>
+  <li><a href="#advantages-and-disadvantages" id="toc-advantages-and-disadvantages" class="nav-link" data-scroll-target="#advantages-and-disadvantages">Advantages and Disadvantages</a>
+  <ul class="collapse">
+  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a></li>
+  <li><a href="#disadvantages" id="toc-disadvantages" class="nav-link" data-scroll-target="#disadvantages">Disadvantages</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -255,15 +260,15 @@ window.Quarto = {
 </header>
 
 
-<p>Have you ever wondered how well your statistical model is doing to model the data? One way to show model accuracy is using a method called cross validation.</p>
+<p>Have you ever wondered how accurately your statistical model is modeling your data? One way to show model accuracy is using a method called cross validation.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This page will cover the folowing: - What is Cross Validation? - <span class="math inline">\(k\)</span>-fold Cross Validation - Coding Cross Validation in Python - Tradeoff between Bias and Variance</p>
+<p>This page will cover the following: - What is Cross Validation? - <span class="math inline">\(k\)</span>-fold Cross Validation - Coding Cross Validation in Python - Advantages and Disadvantages</p>
 <p>We’ll use <a href="https://www.kaggle.com/datasets/wenruliu/adult-income-dataset?resource=download">Adult Income</a> data as an example.</p>
 </section>
 <section id="what-is-cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-cross-validation">What is Cross Validation?</h2>
-<p>Cross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit.</p>
+<p>Cross-validation is the process of repeatedly splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit, and then aggregating the results to evaluate the model.</p>
 </section>
 <section id="k-fold-cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="k-fold-cross-validation"><span class="math inline">\(k\)</span>-fold Cross Validation</h2>
@@ -271,70 +276,74 @@ window.Quarto = {
 <ol type="1">
 <li>Split the data into <span class="math inline">\(k\)</span> folds</li>
 </ol>
-<p>In this step we divide the data into <span class="math inline">\(k\)</span> sections. We will use different combinations of these sections to train our model and validate it.</p>
+<p>In this step we divide the data into <span class="math inline">\(k\)</span> sections. We will use different combinations of these sections to train our model and validate it. The number you choose for <span class="math inline">\(k\)</span> will depend based on your dataset and the results you wish to explore. 5 or 10 folds is typically considered standard. More folds will be more computationally expensive but reduce bias in the performance estimate. Fewer folds have lower variance, but have a higher bias. It is usually recommended to have more folds for larger datasets.</p>
 <ol start="2" type="1">
 <li>Train on <span class="math inline">\(k-1\)</span> folds</li>
 </ol>
-<p>We will use all but one of our sections to train the data. We will create a model using it.</p>
+<p>We will use all but one of our sections to create a model. Reserving one section of the data allows us to use the majority of the data to create a model, increasing the accuracy of it, while the smaller portion of the data to check how well the model performs.</p>
 <ol start="3" type="1">
 <li>Validate on remaining fold</li>
 </ol>
-<p>Next, we take the model created in the previous step and make predictions based on the last section (the one we didn’t include to train the model) and then compare the values.</p>
+<p>Next, we take the model created in the previous step and make predictions using the remaining fold. We plug in the predictor values to the model, and then compare the values the model predicts with the actual values observed in the data. We will store an error metric to later evaluate the mean and standard deviation of the predictions to measure how well our model performed.</p>
 <ol start="4" type="1">
 <li>Repeat <span class="math inline">\(k\)</span> times</li>
 </ol>
-<p>We repeat this process <span class="math inline">\(k\)</span> times to get all possible combinations of the sections for training and validating.</p>
+<p>We repeat this process <span class="math inline">\(k\)</span> times to get all possible combinations of the sections for training and validating. Each section will be used once to validate the data, and <span class="math inline">\(k-1\)</span> times to train the model. Repeating the process across all folds allows us to measure how well the modeling procedure performs for our data and accounts for small random variation seen in the data.</p>
 <ol start="5" type="1">
 <li>Average performance</li>
 </ol>
-<p>Here we take measures of performance from each of the repetitions and aggregate them to evaluate overall how well our model performed.</p>
+<p>Here we take our error metric from each of the repetitions and aggregate them to evaluate overall how well our model performed. The mean shows us the average difference in our model’s predicted values and our observed data. The standard deviation shows how stable the performance of the model is. Smaller numbers signify that the performance of the model is more consistent.</p>
 </section>
-<section id="coding-cross-validaion-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="coding-cross-validaion-in-python">Coding Cross Validaion in Python</h2>
+<section id="coding-cross-validation-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="coding-cross-validation-in-python">Coding Cross Validation in Python</h2>
+<p>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, [Geeks for Geeks] (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process.</p>
 <p>We’ll start by loading the necessary libraries and the data.</p>
-<div id="f3aa0a9c" class="cell">
+<div id="ab66d633" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>adult_income <span class="op">=</span> pd.read_csv(<span class="st">"adult.csv"</span>)[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>, <span class="st">'class'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>adult_income <span class="op">=</span> pd.read_csv(<span class="st">"adult.csv"</span>)[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>, <span class="st">'income'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We want to predict whether the income is greater than 50k for a given adult.</p>
-<div id="23a09317" class="cell">
+<div id="62008bc4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adult_income[<span class="st">'income'</span>] <span class="op">=</span> (adult_income[<span class="st">'class'</span>] <span class="op">==</span> <span class="st">'&gt;50k'</span>).astype(<span class="bu">int</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adult_income[<span class="st">'income'</span>] <span class="op">=</span> (adult_income[<span class="st">'income'</span>] <span class="op">==</span> <span class="st">'&gt;50K'</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> adult_income[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>]].values <span class="co"># Independent Variables</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> adult_income[[<span class="st">'income]].values # Dependent Variables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> adult_income[[<span class="st">'income'</span>]].values <span class="co"># Dependent Variables</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The following is a function to run the cross-validation process and return the results.</p>
-<div id="72f0eacd" class="cell">
+<div id="9a17dff2" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> k_fold_cv(x, y, k):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(x) </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.permutation(n) <span class="co"># Reorganize the data randomly to ensure randomization in our splits</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    folds <span class="op">=</span> np.array_split(indices, k) <span class="co"># Create the folds</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> []</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k): <span class="co"># Repeat the process k times</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        test_idx <span class="op">=</span> folds[i]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        train_idx <span class="op">=</span> np.concatenate([folds[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(k) <span class="cf">if</span> j <span class="op">!=</span> i]) <span class="co"># Combine training folds into one group</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        x_train, y_train <span class="op">=</span> x[train_idx], y[train_idx]</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        x_test, y_test <span class="op">=</span> x[test_idx], y[test_idx]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression() <span class="co"># We use a linear regression in this example</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train, y_train) <span class="co"># Fit the model using training data</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        preds <span class="op">=</span> model.predict(x_test) <span class="co"># Predict values for the test data using the model</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> mean_squared_error(y_test, preds) <span class="co"># Use mse to evaluate the difference in predictions and acutal results</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        errors.append(mse)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(errors), np.std(errors) <span class="co"># return information about the errors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.permutation(n) <span class="co"># Reorganize the data randomly to ensure randomization in our splits</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    folds <span class="op">=</span> np.array_split(indices, k) <span class="co"># Create the folds</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> []</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k): <span class="co"># Repeat the process k times</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        test_idx <span class="op">=</span> folds[i]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        train_idx <span class="op">=</span> np.concatenate([folds[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(k) <span class="cf">if</span> j <span class="op">!=</span> i]) <span class="co"># Combine training folds into one group</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        x_train, y_train <span class="op">=</span> x[train_idx], y[train_idx]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        x_test, y_test <span class="op">=</span> x[test_idx], y[test_idx]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression() <span class="co"># We use a linear regression in this example</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train, y_train) <span class="co"># Fit the model using training data</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        preds <span class="op">=</span> model.predict(x_test) <span class="co"># Predict values for the test data using the model</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> mean_squared_error(y_test, preds) <span class="co"># Use mse to evaluate the difference in predictions and actual results</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        errors.append(mse)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(errors), np.std(errors) <span class="co"># return information about the errors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>For this dataset we’ll use <span class="math inline">\(k=5\)</span> folds.</p>
-<div id="bd41ccaf" class="cell">
+<div id="da9e9924" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mean_mse, std_mse <span class="op">=</span> k_fold_cv(x, y, k <span class="op">=</span> <span class="dv">5</span>)</span>
@@ -342,10 +351,37 @@ window.Quarto = {
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean MSE:'</span>, mean_mse)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Std Dev:'</span>, std_mse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean MSE: 0.16422989467520704
+Std Dev: 0.002405123012044023</code></pre>
 </div>
+</div>
+<p>Here we get an MSE of __ and a standard deviation of __</p>
 </section>
-<section id="tradeoff-between-bias-and-variance" class="level2">
-<h2 class="anchored" data-anchor-id="tradeoff-between-bias-and-variance">Tradeoff Between Bias and Variance</h2>
+<section id="advantages-and-disadvantages" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-and-disadvantages">Advantages and Disadvantages</h2>
+<p>We’ve now discussed how do cross-validation for a model. But when would this be useful, and when might it be better to choose a different validation method?</p>
+<section id="advantages" class="level3">
+<h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
+<ul>
+<li>Using <span class="math inline">\(k\)</span>-fold cross validation is a more reliable method of validation than a single split of the data.</li>
+<li>When data is limited, it provides an efficient use of it. We get to both validate the model and train the model with all the data, instead of removing some of it.</li>
+<li>Cross validation gives us a metric for how reliable our model is. If the model is easily influenced by variations in data, the results from the cross-validation will show that.</li>
+<li>It allows us to evaluate two different models and compare them. The MSE and standard deviation of both will give us insights on which would be better to use.</li>
+</ul>
+</section>
+<section id="disadvantages" class="level3">
+<h3 class="anchored" data-anchor-id="disadvantages">Disadvantages</h3>
+<ul>
+<li>The process of cross-validation is computationally expensive. For large datasets and complex models it can be slow and costly to run.</li>
+<li>Cross-validation is not appropriate for all data types. If there is grouped data or time series data it won’t perform as well.</li>
+<li>The final model will differ from each of the training models. Because we include all the data aggregated together for the final model, the results will be slightly different from each of the models seen in the training phases.</li>
+</ul>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Cross-validation is a useful method for evaluating how well a model is performing on a dataset. It is useful for comparing different models and determining the accuracy and reliability of a model.</p>
 
 
 <!-- -->
@@ -804,95 +840,121 @@ window.Quarto = {
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cross Validation</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Have you ever wondered how well your statistical model is doing to model the data? One way to show model accuracy is using a method called cross validation.</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>This page will cover the folowing:</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What is Cross Validation?</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$k$-fold Cross Validation</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Coding Cross Validation in Python</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tradeoff between Bias and Variance</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>We'll use <span class="co">[</span><span class="ot">Adult Income</span><span class="co">](https://www.kaggle.com/datasets/wenruliu/adult-income-dataset?resource=download)</span> data as an example.</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is Cross Validation?</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>Cross-validation is the process of splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit. </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## $k$-fold Cross Validation</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>There are a few steps to cross-validation</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>1) Split the data into $k$ folds</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>In this step we divide the data into $k$ sections. We will use different combinations of these sections to train our model and validate it.</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>2) Train on $k-1$ folds</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>We will use all but one of our sections to train the data. We will create a model using it.</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>3) Validate on remaining fold</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>Next, we take the model created in the previous step and make predictions based on the last section (the one we didn't include to train the model) and then compare the values.</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>4) Repeat $k$ times</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>We repeat this process $k$ times to get all possible combinations of the sections for training and validating. </span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>5) Average performance</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>Here we take measures of performance from each of the repetitions and aggregate them to evaluate overall how well our model performed.</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coding Cross Validaion in Python</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>We'll start by loading the necessary libraries and the data.</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>adult_income <span class="op">=</span> pd.read_csv(<span class="st">"adult.csv"</span>)[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>, <span class="st">'class'</span>]]</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>We want to predict whether the income is greater than 50k for a given adult. </span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>adult_income[<span class="st">'income'</span>] <span class="op">=</span> (adult_income[<span class="st">'class'</span>] <span class="op">==</span> <span class="st">'&gt;50k'</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> adult_income[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>]].values <span class="co"># Independent Variables</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> adult_income[[<span class="st">'income]].values # Dependent Variables</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="er">```</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="er">The following is a function to run the cross-validation process and return the results. </span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> k_fold_cv(x, y, k):</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(x) </span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.permutation(n) <span class="co"># Reorganize the data randomly to ensure randomization in our splits</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    folds <span class="op">=</span> np.array_split(indices, k) <span class="co"># Create the folds</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> []</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k): <span class="co"># Repeat the process k times</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>        test_idx <span class="op">=</span> folds[i]</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>        train_idx <span class="op">=</span> np.concatenate([folds[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(k) <span class="cf">if</span> j <span class="op">!=</span> i]) <span class="co"># Combine training folds into one group</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>        x_train, y_train <span class="op">=</span> x[train_idx], y[train_idx]</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>        x_test, y_test <span class="op">=</span> x[test_idx], y[test_idx]</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression() <span class="co"># We use a linear regression in this example</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train, y_train) <span class="co"># Fit the model using training data</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>        preds <span class="op">=</span> model.predict(x_test) <span class="co"># Predict values for the test data using the model</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> mean_squared_error(y_test, preds) <span class="co"># Use mse to evaluate the difference in predictions and acutal results</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>        errors.append(mse)</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(errors), np.std(errors) <span class="co"># return information about the errors</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>```</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>For this dataset we<span class="st">'ll use $k=5$ folds. </span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>mean_mse, std_mse <span class="op">=</span> k_fold_cv(x, y, k <span class="op">=</span> <span class="dv">5</span>)</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean MSE:'</span>, mean_mse)</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Std Dev:'</span>, std_mse)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>```</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">## Tradeoff Between Bias and Variance</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cross Validation</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Have you ever wondered how accurately your statistical model is modeling your data? One way to show model accuracy is using a method called cross validation.</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>This page will cover the following:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What is Cross Validation?</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$k$-fold Cross Validation</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Coding Cross Validation in Python</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Advantages and Disadvantages</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>We'll use <span class="co">[</span><span class="ot">Adult Income</span><span class="co">](https://www.kaggle.com/datasets/wenruliu/adult-income-dataset?resource=download)</span> data as an example.</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is Cross Validation?</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>Cross-validation is the process of repeatedly splitting a dataset into two pieces and using one to fit a model, and the other piece to check the fit, and then aggregating the results to evaluate the model.</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## $k$-fold Cross Validation</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>There are a few steps to cross-validation</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>1) Split the data into $k$ folds</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>In this step we divide the data into $k$ sections. We will use different combinations of these sections to train our model and validate it. The number you choose for $k$ will depend based on your dataset and the results you wish to explore. 5 or 10 folds is typically considered standard. More folds will be more computationally expensive but reduce bias in the performance estimate. Fewer folds have lower variance, but have a higher bias. It is usually recommended to have more folds for larger datasets. </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>2) Train on $k-1$ folds</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>We will use all but one of our sections to create a model. Reserving one section of the data allows us to use the majority of the data to create a model, increasing the accuracy of it, while the smaller portion of the data to check how well the model performs.</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>3) Validate on remaining fold</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>Next, we take the model created in the previous step and make predictions using the remaining fold. We plug in the predictor values to the model, and then compare the values the model predicts with the actual values observed in the data. We will store an error metric to later evaluate the mean and standard deviation of the predictions to measure how well our model performed.</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>4) Repeat $k$ times</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>We repeat this process $k$ times to get all possible combinations of the sections for training and validating. Each section will be used once to validate the data, and $k-1$ times to train the model. Repeating the process across all folds allows us to measure how well the modeling procedure performs for our data and accounts for small random variation seen in the data.</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>5) Average performance</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>Here we take our error metric from each of the repetitions and aggregate them to evaluate overall how well our model performed. The mean shows us the average difference in our model's predicted values and our observed data. The standard deviation shows how stable the performance of the model is. Smaller numbers signify that the performance of the model is more consistent.</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coding Cross Validation in Python</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>This section will walk through how to write your own cross-validation in Python from scratch. There are also several libraries in Python that have built-in libraries for cross-validation. To explore those, <span class="co">[</span><span class="ot">Geeks for Geeks</span><span class="co">]</span> (https://www.geeksforgeeks.org/machine-learning/cross-validation-machine-learning/) can be a good starting place. Their website also has additional details for the cross-validation process. </span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>We'll start by loading the necessary libraries and the data.</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>adult_income <span class="op">=</span> pd.read_csv(<span class="st">"adult.csv"</span>)[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>, <span class="st">'income'</span>]]</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>We want to predict whether the income is greater than 50k for a given adult. </span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>adult_income[<span class="st">'income'</span>] <span class="op">=</span> (adult_income[<span class="st">'income'</span>] <span class="op">==</span> <span class="st">'&gt;50K'</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> adult_income[[<span class="st">'age'</span>, <span class="st">'hours-per-week'</span>]].values <span class="co"># Independent Variables</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> adult_income[[<span class="st">'income'</span>]].values <span class="co"># Dependent Variables</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>The following is a function to run the cross-validation process and return the results. </span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> k_fold_cv(x, y, k):</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(x) </span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.permutation(n) <span class="co"># Reorganize the data randomly to ensure randomization in our splits</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    folds <span class="op">=</span> np.array_split(indices, k) <span class="co"># Create the folds</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> []</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k): <span class="co"># Repeat the process k times</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        test_idx <span class="op">=</span> folds[i]</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        train_idx <span class="op">=</span> np.concatenate([folds[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(k) <span class="cf">if</span> j <span class="op">!=</span> i]) <span class="co"># Combine training folds into one group</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>        x_train, y_train <span class="op">=</span> x[train_idx], y[train_idx]</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>        x_test, y_test <span class="op">=</span> x[test_idx], y[test_idx]</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression() <span class="co"># We use a linear regression in this example</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train, y_train) <span class="co"># Fit the model using training data</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        preds <span class="op">=</span> model.predict(x_test) <span class="co"># Predict values for the test data using the model</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> mean_squared_error(y_test, preds) <span class="co"># Use mse to evaluate the difference in predictions and actual results</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>        errors.append(mse)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(errors), np.std(errors) <span class="co"># return information about the errors</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>For this dataset we'll use $k=5$ folds. </span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>mean_mse, std_mse <span class="op">=</span> k_fold_cv(x, y, k <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean MSE:'</span>, mean_mse)</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Std Dev:'</span>, std_mse)</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>Here we get an MSE of __ and a standard deviation of __</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Advantages and Disadvantages</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>We've now discussed how do cross-validation for a model. But when would this be useful, and when might it be better to choose a different validation method?</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Advantages</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using $k$-fold cross validation is a more reliable method of validation than a single split of the data.</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When data is limited, it provides an efficient use of it. We get to both validate the model and train the model with all the data, instead of removing some of it. </span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cross validation gives us a metric for how reliable our model is. If the model is easily influenced by variations in data, the results from the cross-validation will show that. </span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It allows us to evaluate two different models and compare them. The MSE and standard deviation of both will give us insights on which would be better to use.</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### Disadvantages</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The process of cross-validation is computationally expensive. For large datasets and complex models it can be slow and costly to run. </span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cross-validation is not appropriate for all data types. If there is grouped data or time series data it won't perform as well. </span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The final model will differ from each of the training models. Because we include all the data aggregated together for the final model, the results will be slightly different from each of the models seen in the training phases. </span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>Cross-validation is a useful method for evaluating how well a model is performing on a dataset. It is useful for comparing different models and determining the accuracy and reliability of a model. </span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
