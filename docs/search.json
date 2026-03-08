@@ -30,67 +30,46 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to My Data Science Portfolio",
-    "section": "",
-    "text": "Welcome to my data science portfolio! This site shows my journey learning data science and analytics. Here you’ll find projects that demonstrate what I’ve learned and discovered.\n\n\nThis portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages.\n\n\n\n\nProgramming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data\n\n\n\n\n\n\n\nLearn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
-  },
-  {
-    "objectID": "index.html#about-this-portfolio",
-    "href": "index.html#about-this-portfolio",
-    "title": "Welcome to My Data Science Portfolio",
-    "section": "",
-    "text": "This portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages."
-  },
-  {
-    "objectID": "index.html#skills-im-learning",
-    "href": "index.html#skills-im-learning",
-    "title": "Welcome to My Data Science Portfolio",
-    "section": "",
-    "text": "Programming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data"
-  },
-  {
-    "objectID": "index.html#my-projects",
-    "href": "index.html#my-projects",
-    "title": "Welcome to My Data Science Portfolio",
-    "section": "",
-    "text": "Learn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
+    "objectID": "preferred_colors.html",
+    "href": "preferred_colors.html",
     "title": "",
     "section": "",
     "text": "Code"
   },
   {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
+    "objectID": "preferred_colors.html#motivating-question",
+    "href": "preferred_colors.html#motivating-question",
     "title": "",
-    "section": "Education",
-    "text": "Education\n\nBrigham Young University\n\nApplied Statistics and Analytics | Expected Graduation: April 2027\n\nDean’s list (top 95% of students) since 2023\nRelevant Courses: Statistical Modeling 1 & 2, Probability and Inference 1 & 2, Calculus of Several Variables, Linear Algebra, Intro to Computer Science"
+    "section": "Motivating Question",
+    "text": "Motivating Question\nAre different aspects of lifestyle or demographics associated with a different favorite color?"
   },
   {
-    "objectID": "about.html#experience",
-    "href": "about.html#experience",
+    "objectID": "preferred_colors.html#good-scraping-practice",
+    "href": "preferred_colors.html#good-scraping-practice",
     "title": "",
-    "section": "Experience",
-    "text": "Experience\n\nStudent Business Analyst\n\nBrigham Young University | December 2025 - Present\n\nWrote queries to safely transport sensitive information related to Enrollment and Financial Aid\nDesigned multiple Tableau dashboards created from custom SQL scripts for clarity and usability\nMaintained data security, privacy, & upheld FERPA laws for more than 500,000 distinct people\n\n\n\n\nData Analyst Intern\n\nChristopherson Business Travel | June 2025 - September 2025\n\nWorked with large datasets (1-10M+ rows) related to call centers, client information, etc.\nCreated profitability model to determine performance based employee compensation\nAdjusted for GDP changes and COVID-19 travel shock in historic data\nRegularly presented data insights and statistical findings & communicated possible roadblocks\n\n\n\n\nMath Instructional Design Assistant\n\nBrigham Young University | January 2023 - November 2025\n\nDesigned 7 High School Math courses serving 60,000+ students in 153 countries\nTrained and mentored 3-5 student employees in web design and learning objective alignment\nUsed task management tools to coordinate tasks and deadlines (Microsoft Teams, Teamwork)\nFocused on accessibility, clarity, and student-centered design in an online format\n\n\n\n\nFull-Time Missionary\n\nThe Church of Jesus Christ of Latter-day Saints | May 2023 - November 2024\n\nVolunteer service in Uruguay"
+    "section": "Good scraping practice",
+    "text": "Good scraping practice\nI took data from two different websites:\nJoe Hallock Color Survey Wikipedia List of sovereign states by male to female income ratio\nThe first was a research project done by Joe Hallock in 2003. The website had the data publicly listed. The data lists information such as country, gender, and age of the respondents, as well as color association, favorite colors, and frequency of daily activities. The second is a table from Wikipedia about the income per capita of different countries differentiated by gender."
   },
   {
-    "objectID": "about.html#skills",
-    "href": "about.html#skills",
+    "objectID": "preferred_colors.html#steps-to-get-the-data",
+    "href": "preferred_colors.html#steps-to-get-the-data",
     "title": "",
-    "section": "Skills",
-    "text": "Skills\n\nTechnical Tools:\n\nPython\nR\nSQL\nTableau\nExcel\n\n\n\nStatistical Methods:\n\nRegression\nInference\nModeling\nData Visualization\n\n\n\nSoft Skills:\n\nCritical Thinking & Problem Solving\nCollaboration & Communication\nOrganization & Dependability"
+    "section": "Steps to get the data",
+    "text": "Steps to get the data\nThe data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate. The table from Wikipedia was straightforward to scrape."
   },
   {
-    "objectID": "about.html#get-to-know-me",
-    "href": "about.html#get-to-know-me",
+    "objectID": "preferred_colors.html#dataset-overview",
+    "href": "preferred_colors.html#dataset-overview",
     "title": "",
-    "section": "Get to Know Me",
-    "text": "Get to Know Me\n\nHobbies\n\nPiano, Flute, Singing & Guitar\nRunning & Hiking\nBoard Games\n\n\n\nFun facts\n\nMy favorite color is green\n\n\n\n\nHeadshot of Me"
+    "section": "Dataset Overview",
+    "text": "Dataset Overview"
+  },
+  {
+    "objectID": "preferred_colors.html#further-information",
+    "href": "preferred_colors.html#further-information",
+    "title": "",
+    "section": "Further Information",
+    "text": "Further Information"
   },
   {
     "objectID": "cross_validation.html",
@@ -140,6 +119,69 @@
     "title": "Cross Validation",
     "section": "Conclusion",
     "text": "Conclusion\nCross-validation is a useful method for evaluating how well a model is performing on a dataset. It is useful for comparing different models and determining the accuracy and reliability of a model."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "",
+    "section": "Education",
+    "text": "Education\n\nBrigham Young University\n\nApplied Statistics and Analytics | Expected Graduation: April 2027\n\nDean’s list (top 95% of students) since 2023\nRelevant Courses: Statistical Modeling 1 & 2, Probability and Inference 1 & 2, Calculus of Several Variables, Linear Algebra, Intro to Computer Science"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "",
+    "section": "Experience",
+    "text": "Experience\n\nStudent Business Analyst\n\nBrigham Young University | December 2025 - Present\n\nWrote queries to safely transport sensitive information related to Enrollment and Financial Aid\nDesigned multiple Tableau dashboards created from custom SQL scripts for clarity and usability\nMaintained data security, privacy, & upheld FERPA laws for more than 500,000 distinct people\n\n\n\n\nData Analyst Intern\n\nChristopherson Business Travel | June 2025 - September 2025\n\nWorked with large datasets (1-10M+ rows) related to call centers, client information, etc.\nCreated profitability model to determine performance based employee compensation\nAdjusted for GDP changes and COVID-19 travel shock in historic data\nRegularly presented data insights and statistical findings & communicated possible roadblocks\n\n\n\n\nMath Instructional Design Assistant\n\nBrigham Young University | January 2023 - November 2025\n\nDesigned 7 High School Math courses serving 60,000+ students in 153 countries\nTrained and mentored 3-5 student employees in web design and learning objective alignment\nUsed task management tools to coordinate tasks and deadlines (Microsoft Teams, Teamwork)\nFocused on accessibility, clarity, and student-centered design in an online format\n\n\n\n\nFull-Time Missionary\n\nThe Church of Jesus Christ of Latter-day Saints | May 2023 - November 2024\n\nVolunteer service in Uruguay"
+  },
+  {
+    "objectID": "about.html#skills",
+    "href": "about.html#skills",
+    "title": "",
+    "section": "Skills",
+    "text": "Skills\n\nTechnical Tools:\n\nPython\nR\nSQL\nTableau\nExcel\n\n\n\nStatistical Methods:\n\nRegression\nInference\nModeling\nData Visualization\n\n\n\nSoft Skills:\n\nCritical Thinking & Problem Solving\nCollaboration & Communication\nOrganization & Dependability"
+  },
+  {
+    "objectID": "about.html#get-to-know-me",
+    "href": "about.html#get-to-know-me",
+    "title": "",
+    "section": "Get to Know Me",
+    "text": "Get to Know Me\n\nHobbies\n\nPiano, Flute, Singing & Guitar\nRunning & Hiking\nBoard Games\n\n\n\nFun facts\n\nMy favorite color is green\n\n\n\n\nHeadshot of Me"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Welcome to my data science portfolio! This site shows my journey learning data science and analytics. Here you’ll find projects that demonstrate what I’ve learned and discovered.\n\n\nThis portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages.\n\n\n\n\nProgramming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data\n\n\n\n\n\n\n\nLearn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
+  },
+  {
+    "objectID": "index.html#about-this-portfolio",
+    "href": "index.html#about-this-portfolio",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "This portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages."
+  },
+  {
+    "objectID": "index.html#skills-im-learning",
+    "href": "index.html#skills-im-learning",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Programming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data"
+  },
+  {
+    "objectID": "index.html#my-projects",
+    "href": "index.html#my-projects",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Learn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
   },
   {
     "objectID": "projects/data-acquisition.html",
