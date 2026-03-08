@@ -17,6 +17,8 @@ website:
         menu: 
           - text: "Cross-Validation"
             href: cross_validation.qmd
+          - text: "Preferred Colors"
+            href: preferred_colors.qmd
       - text: "Projects"
         menu:
           - text: "All Projects"
@@ -32,7 +34,9 @@ website:
       - icon: github
         href: https://github.com/flutelys
       - icon: linkedin
-        href: https://linkedin.com/in/your-profile
+        href: https://www.linkedin.com/in/alyssa-wilson-stats
+
+
 
   sidebar:
     - title: "Projects"
