@@ -1,0 +1,23 @@
+# Preferred Colors
+
+My favorite color is green. I am very passionate about the color, but enjoy learning about colors in general. I am interested to see if different aspects of a persons life are associated with what their favorite color is.
+
+## Motivating Question
+Are different aspects of lifestyle or demographics associated with a different favorite color?
+
+## Good scraping practice
+I took data from two different websites:
+
+[Joe Hallock Color Survey](https://www.joehallock.com/edu/COM498/surveydata.html)
+[Wikipedia List of sovereign states by male to female income ratio](https://en.wikipedia.org/wiki/List_of_sovereign_states_by_male_to_female_income_ratio)
+
+The first was a research project done by Joe Hallock in 2003. The website had the data publicly listed. The data lists information such as country, gender, and age of the respondents, as well as color association, favorite colors, and frequency of daily activities. 
+The second is a table from Wikipedia about the income per capita of different countries differentiated by gender.
+
+## Steps to get the data
+
+The data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate. The table from Wikipedia was straightforward to scrape. 
+
+## Dataset Overview
+
+## Further Information
