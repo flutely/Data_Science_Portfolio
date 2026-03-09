@@ -48,21 +48,21 @@
     "href": "preferred_colors.html#good-scraping-practice",
     "title": "",
     "section": "Good scraping practice",
-    "text": "Good scraping practice\nI took data from two different websites:\nJoe Hallock Color Survey Wikipedia List of sovereign states by male to female income ratio\nThe first was a research project done by Joe Hallock in 2003. The website had the data publicly listed. The data lists information such as country, gender, and age of the respondents, as well as color association, favorite colors, and frequency of daily activities. The second is a table from Wikipedia about the income per capita of different countries differentiated by gender."
+    "text": "Good scraping practice\nI took data from two different websites:\nJoe Hallock Color Survey\nWikipedia List of sovereign states by male to female income ratio\nThe first was a research project done by Joe Hallock in 2003. The website had the data publicly listed. The data lists information such as country, gender, and age of the respondents, as well as color association, favorite colors, and frequency of daily activities.\nThe second is a table from Wikipedia about the income per capita of different countries differentiated by gender."
   },
   {
     "objectID": "preferred_colors.html#steps-to-get-the-data",
     "href": "preferred_colors.html#steps-to-get-the-data",
     "title": "",
     "section": "Steps to get the data",
-    "text": "Steps to get the data\nThe data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate. The table from Wikipedia was straightforward to scrape."
+    "text": "Steps to get the data\n\nScraping\nThe data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate. The table from Wikipedia was straightforward to scrape.\n\n\nCleaning\n\n\nMerging"
   },
   {
     "objectID": "preferred_colors.html#dataset-overview",
     "href": "preferred_colors.html#dataset-overview",
     "title": "",
     "section": "Dataset Overview",
-    "text": "Dataset Overview"
+    "text": "Dataset Overview\nThe dataset created has the following columns: Demographic Information: - Country - Age - Gender - Income Color Associations: - Cheap - Reliable - Trust - Security - Speed - Fun - Quality Lifestyle Descriptions: - Research Freq - Selling Freq - News Freq - Weather Freq - Games Freq - Music Freq - Movie Freq - Art Freq - Word Freq Personal Color Preferences: - Favorite - Least Favoirte - LightDark"
   },
   {
     "objectID": "preferred_colors.html#further-information",
