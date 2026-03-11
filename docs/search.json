@@ -55,14 +55,14 @@
     "href": "preferred_colors.html#steps-to-get-the-data",
     "title": "",
     "section": "Steps to get the data",
-    "text": "Steps to get the data\n\nScraping\nThe data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate. The table from Wikipedia was straightforward to scrape.\n\n\nCleaning\n\n\nMerging"
+    "text": "Steps to get the data\n\nScraping\nThe data was already in table format for both sources. Because the Color Survey data is from a relatively old website, the table with the data is one of many on the page and required some guess-and-check to isolate after scraping the page information. The table from Wikipedia was relatively straightforward to scrape.\n\n\nCleaning\nThe Color Survey data did not have headers. I had to cross-reference another page on the website that had the specific survey questions asked to the participants to undertand what each column meant and to give each column a coordinating title.\nThe income information on Wikipedia was in a wide table format. I needed to use the {python}melt() function to divide each country into a row for men and a row for women to prepare the data to be joined.\n\n\nMerging\nI joined the two datasets together on gender and country information. One difficulty I faced was that the country names were not exactly the same in both datasets. I had to rename ‘U.S.A.’ in the colors dataset with ‘United States’ to ensure that the join included all available information."
   },
   {
     "objectID": "preferred_colors.html#dataset-overview",
     "href": "preferred_colors.html#dataset-overview",
     "title": "",
     "section": "Dataset Overview",
-    "text": "Dataset Overview\nThe dataset created has the following columns: Demographic Information: - Country - Age - Gender - Income Color Associations: - Cheap - Reliable - Trust - Security - Speed - Fun - Quality Lifestyle Descriptions: - Research Freq - Selling Freq - News Freq - Weather Freq - Games Freq - Music Freq - Movie Freq - Art Freq - Word Freq Personal Color Preferences: - Favorite - Least Favoirte - LightDark"
+    "text": "Dataset Overview\nThe dataset created has the following columns: Demographic Information:\n\nCountry\nAge\nGender\nIncome\n\nColor Associations:\n\nCheap\nReliable\nTrust\nSecurity\nSpeed\nFun\nQuality\n\nLifestyle Descriptions:\n\nResearch Freq\nSelling Freq\nNews Freq\nWeather Freq\nGames Freq\nMusic Freq\nMovie Freq\nArt Freq\nWord Freq\n\nPersonal Color Preferences:\n\nFavorite\nLeast Favorite\nLightDark"
   },
   {
     "objectID": "preferred_colors.html#further-information",
