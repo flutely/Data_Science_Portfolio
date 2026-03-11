@@ -1,20 +1,32 @@
 # Preferred Colors
 
-My favorite color is green. I am very passionate about the color, but enjoy learning about colors in general. I am interested to see if different aspects of a persons life are associated with what their favorite color is.
+My favorite color is green. I am very passionate about the color, but enjoy learning about colors in general. I love understanding the reasoning individuals have for color preferences and for patterns that lie within. Different cultures also have different connotations of color, which may lead to different color preferences. This could be an important principle to understand for fields such as graphic design, user experience, and could even be expanded to areas such as politics or religion. Colors can have a big impact on what people think and believe.
+
+I am also interested by income for different groups of people. Between countries it differs greatly, and even within countries it changes between religion, ethnicity, gender, and many other soceital factors. Whether it be because of differences of lifestyle, preference for different jobs, or a biased pay-gap, it is difficult to tell, but nevertheless insights can be found in the data.
 
 ## Motivating Question
-Are different aspects of lifestyle or demographics associated with a different favorite color?
+In this blog post I will explore data that could be used to answer the following question:
+
+What is the relationship between favorite color and income in different countries and how does that differ between men and women?
+
+While we won't dive into a deep analysis of the answers to this question, we will discuss how this data was obtained and compiled, and what could be done to replicate the process. The ambitious reader may even attempt an analysis on this data to answer the motivating question if they so choose. 
 
 ## Good scraping practice
-I took data from two different websites:
+The data used was taken from two different websites:
+
+### Color Survey
+The first is a website detailing a research project done by Joe Hallock in 2003. The raw data is publicly available on the website. Information such as country, gender, and age of the respondents is included, as well as other information such as color association, favorite colors, and frequency of daily activities. 
 
 [Joe Hallock Color Survey](https://www.joehallock.com/edu/COM498/surveydata.html)
 
+Joe Hallock provided his entire research paper and all the data on a publically available website. While no robots.txt file existed, his introductory home page encouraged browsing of the findings as well as the data. I was intentional to only use one request to fetch the data so as to not overload the website. 
+
+### Income
+The second dataset is a table from Wikipedia about the income per capita of different countries differentiated by gender. More information about the gross national income of any specific country in the dataset can be found by following the links provided on the site.
+
 [Wikipedia List of sovereign states by male to female income ratio](https://en.wikipedia.org/wiki/List_of_sovereign_states_by_male_to_female_income_ratio)
 
-The first was a research project done by Joe Hallock in 2003. The website had the data publicly listed. The data lists information such as country, gender, and age of the respondents, as well as color association, favorite colors, and frequency of daily activities. 
-
-The second is a table from Wikipedia about the income per capita of different countries differentiated by gender.
+Wikipedia discouraged data scraping from their sites by automated robots that create high traffic. When using the ```requests``` library in Python to scrape the website, I identified myself and my purpose with the data. I also limited the number of requests I was making to avoid overloading the site. 
 
 ## Steps to get the data
 
@@ -24,7 +36,7 @@ The data was already in table format for both sources. Because the Color Survey 
 ### Cleaning
 The Color Survey data did not have headers. I had to cross-reference another page on the website that had the specific survey questions asked to the participants to undertand what each column meant and to give each column a coordinating title.
 
-The income information on Wikipedia was in a wide table format. I needed to use the ```{python}melt()``` function to divide each country into a row for men and a row for women to prepare the data to be joined.
+The income information on Wikipedia was in a wide table format. I needed to use the ```melt()``` function to divide each country into a row for men and a row for women to prepare the data to be joined.
 
 ### Merging
 I joined the two datasets together on gender and country information. One difficulty I faced was that the country names were not exactly the same in both datasets. I had to rename 'U.S.A.' in the colors dataset with 'United States' to ensure that the join included all available information.
@@ -67,3 +79,9 @@ Personal Color Preferences:
 - LightDark
 
 ## Further Information
+
+One other aspects of this dataset that could be interesting to explore could be how age relates to favorite color. This could be useful for companies that want to market to different age groups. For example, a company that wanted to focus their marketing to older adults might take a different approach to colors than would a company that was advertising to teens.
+
+It would also be interesting to compare the income of different age groups in different companies, and see how that may be related to color preferences. The current data does not include income based on age, but if more specific data was found, an interesting relationship may be discovered. For example, maybe older adults that make more money have differing color preferences than similar-aged adults with similar incomes but live in a different country. 
+
+I would also be interested in exploring more granular color information. Data about color preferences that includes hexidecimal numbers could be very interesting, such as which colors are most commonly used in websites or whether the saturation of colors affects how popular a social media post is. 
