@@ -62,7 +62,7 @@
     "href": "preferred_colors.html#dataset-overview",
     "title": "",
     "section": "Dataset Overview",
-    "text": "Dataset Overview\nThe dataset created has the following columns: Demographic Information:\n\nCountry\nAge\nGender\nIncome\n\nColor Associations:\n\nCheap\nReliable\nTrust\nSecurity\nSpeed\nFun\nQuality\n\nLifestyle Descriptions:\n\nResearch Freq\nSelling Freq\nNews Freq\nWeather Freq\nGames Freq\nMusic Freq\nMovie Freq\nArt Freq\nWord Freq\n\nPersonal Color Preferences:\n\nFavorite\nLeast Favorite\nLightDark"
+    "text": "Dataset Overview\nTo view the complete dataset, visit my github repository.\n\nColumns\nThe created dataset has 228 rows and the following 30 columns:\nDemographic Information:\n\nCountry\nAge\nGender\nIncome\n\nColor Associations:\n\nCheap\nReliable\nTrust\nSecurity\nSpeed\nFun\nQuality\nTechnology\nLoneliness\nFear\nDisease\nCourage\n\nLifestyle Descriptions:\n\nShopping Freq\nCommunicate Freq\nResearch Freq\nSelling Freq\nNews Freq\nWeather Freq\nGames Freq\nMusic Freq\nMovie Freq\nArt Freq\nWord Freq\n\nPersonal Color Preferences:\n\nFavorite\nLeast Favorite\nLightDark"
   },
   {
     "objectID": "preferred_colors.html#further-information",
