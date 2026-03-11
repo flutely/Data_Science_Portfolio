@@ -42,7 +42,12 @@ The income information on Wikipedia was in a wide table format. I needed to use 
 I joined the two datasets together on gender and country information. One difficulty I faced was that the country names were not exactly the same in both datasets. I had to rename 'U.S.A.' in the colors dataset with 'United States' to ensure that the join included all available information.
 
 ## Dataset Overview
-The dataset created has the following columns:
+
+To view the complete dataset, visit my [github repository](https://github.com/flutely/preferred_colors).
+
+### Columns
+The created dataset has 228 rows and the following 30 columns:
+
 Demographic Information:
 
 - Country
@@ -59,9 +64,16 @@ Color Associations:
 - Speed
 - Fun
 - Quality
+- Technology
+- Loneliness
+- Fear
+- Disease
+- Courage
 
 Lifestyle Descriptions:
 
+- Shopping Freq
+- Communicate Freq
 - Research Freq
 - Selling Freq
 - News Freq
@@ -77,6 +89,8 @@ Personal Color Preferences:
 - Favorite
 - Least Favorite
 - LightDark
+
+### 
 
 ## Further Information
 
